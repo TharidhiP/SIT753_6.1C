@@ -19,7 +19,7 @@ pipeline{
                 echo "unit tests"
                 sh "junit --version"
                 echo "integration tests"
-                sh "selenium --version"
+                sh "jmeter --version"
             }
             post {
                 success {
@@ -65,7 +65,7 @@ pipeline{
          stage('Test in Staging Environment'){
             steps{
                 echo "integration tests"
-                sh "selenium --version"
+                sh "jmeter --version"
             }
         }
          stage('Deploy to Production'){
