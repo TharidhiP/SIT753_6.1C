@@ -10,16 +10,16 @@ pipeline{
             steps{
                 echo "fetch the source code from the ${env.DIRECTORY_PATH} specified by the environment varaible"
                 echo "compile the code and generate any necessary artifacts"
-                sh "maven --version"
+                //sh "maven --version"
             }
         }
         
         stage('Test'){
             steps{
                 echo "unit tests"
-                sh "junit --version"
+                //sh "junit --version"
                 echo "integration tests"
-                sh "jmeter --version"
+                //sh "jmeter --version"
             }
             post {
                 success {
@@ -65,7 +65,7 @@ pipeline{
          stage('Test in Staging Environment'){
             steps{
                 echo "integration tests"
-                sh "jmeter --version"
+                //sh "jmeter --version"
             }
         }
          stage('Deploy to Production'){
