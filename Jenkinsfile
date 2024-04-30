@@ -36,14 +36,14 @@ pipeline{
         stage('Code Analysis'){
             steps{
                 echo "do a security scan of the code"
-                sh "snyk --version"
+                //sh "snyk --version"
             }
         }
 
         stage('Security Scan'){
             steps{
                 echo "check the quality of the code"
-                sh "sonarqube --version"
+                //sh "sonarqube --version"
             }
              post {
                 success {
