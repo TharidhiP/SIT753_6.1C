@@ -30,44 +30,35 @@ pipeline{
                     echo "JUnit Version: ${junitVersion}"
                 }
             }
-            post {
-                always {
-                    success{
+             post {
+        always {
             script {
                 // Define the recipient's email address
                 def recipient = "tharidhip172002@gmail.com"
-            
-                // Define the subject and body of the email
-                def subject = "Build Status Email-SUCCESSFUL"
-                def body = "Test stage was successful, click the following link to view the console output of the build: ${env.BUILD_URL}/console"
                 
-                // Send the email with the link to the build log
+                // Define the subject and body of the email
+                def subject
+                def body
+                
+                // Check the build result and set subject and body accordingly
+                if (currentBuild.result == 'SUCCESS') {
+                    subject = "Build Successful"
+                    body = "The test stage was successful. Click the following link to view the console output: ${env.BUILD_URL}/console"
+                } else {
+                    subject = "Build Failed"
+                    body = "The test stage failed. Click the following link to view the console output: ${env.BUILD_URL}/console"
+                }
+                
+                // Send the email
                 mail (
                     to: recipient,
                     subject: subject,
                     body: body
                 )
             }
-                }
-                   failure{
-            script {
-                // Define the recipient's email address
-                def recipient = "tharidhip172002@gmail.com"
-            
-                // Define the subject and body of the email
-                def subject = "Build Status Email-FAILURE"
-                def body = "Test stage was unsuccessful, click the following link to view the console output of the build: ${env.BUILD_URL}/console"
-                
-                // Send the email with the link to the build log
-                mail (
-                    to: recipient,
-                    subject: subject,
-                    body: body
-                )
-            }
-                }
         }
-            }
+    }
+}
         }
         
         stage('Code Analysis'){
@@ -89,17 +80,25 @@ pipeline{
                 }
             }
              post {
-                  always {
-                    success{
+        always {
             script {
                 // Define the recipient's email address
                 def recipient = "tharidhip172002@gmail.com"
-            
-                // Define the subject and body of the email
-                def subject = "Build Status Email-SUCCESSFUL"
-                def body = "Security scan stage was successful, click the following link to view the console output of the build: ${env.BUILD_URL}/console"
                 
-                // Send the email with the link to the build log
+                // Define the subject and body of the email
+                def subject
+                def body
+                
+                // Check the build result and set subject and body accordingly
+                if (currentBuild.result == 'SUCCESS') {
+                    subject = "Build Successful"
+                    body = "The security scan stage was successful. Click the following link to view the console output: ${env.BUILD_URL}/console"
+                } else {
+                    subject = "Build Failed"
+                    body = "The security scan stage failed. Click the following link to view the console output: ${env.BUILD_URL}/console"
+                }
+                
+                // Send the email
                 mail (
                     to: recipient,
                     subject: subject,
@@ -107,25 +106,8 @@ pipeline{
                 )
             }
         }
-         failure{
-            script {
-                // Define the recipient's email address
-                def recipient = "tharidhip172002@gmail.com"
-            
-                // Define the subject and body of the email
-                def subject = "Build Status Email-FAILURE"
-                def body = "Security scan stage was unsuccessful, click the following link to view the console output of the build: ${env.BUILD_URL}/console"
-                
-                // Send the email with the link to the build log
-                mail (
-                    to: recipient,
-                    subject: subject,
-                    body: body
-                )
-            }
-        }
-                  }
-        }
+    }
+}
         }
         
         stage('Deploy to Staging Environment'){
@@ -151,5 +133,7 @@ pipeline{
         
     }
 }
+
+
 
 
