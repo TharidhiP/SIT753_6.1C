@@ -28,7 +28,7 @@ pipeline{
                         subject: "Build Status Email",
                         body: "Test stage was successful",
                         attachLog: true,
-                        to: "tharidhip172002@gmail.com"
+                        mail to: "tharidhip172002@gmail.com"
                     )
                 }
                 failure {
@@ -37,7 +37,7 @@ pipeline{
                         subject: "Build Status Email",
                         body: "Test stage was unsuccessful",
                         attachLog: true,
-                        to: "tharidhip172002@gmail.com"
+                        mail to: "tharidhip172002@gmail.com"
                     )
                 }
             }
@@ -62,7 +62,7 @@ pipeline{
                         subject: "Build Status Email",
                         body: "Security scan stage was successful",
                         attachLog: true,
-                        to: "tharidhip172002@gmail.com"
+                        mail to: "tharidhip172002@gmail.com"
                     )
                 }
                 failure {
@@ -71,7 +71,7 @@ pipeline{
                         subject: "Build Status Email",
                         body: "Security scan was unsuccessful",
                         attachLog: true,
-                        to: "tharidhip172002@gmail.com"
+                        mail to: "tharidhip172002@gmail.com"
                     )
                 }
             }
