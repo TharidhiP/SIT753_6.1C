@@ -33,7 +33,6 @@ pipeline{
             post {
                 success {
                     // Send email notification on success
-                        emailext attachmentsPattern: "consoleText.txt",
                         mail to: "tharidhip172002@gmail.com",
                         subject: "Build Status Email",
                         body: "Test stage was successful"
