@@ -24,15 +24,21 @@ pipeline{
             post {
                 success {
                     // Send email notification on success
-                    //sendEmailNotification('Unit and Integration Tests', 'SUCCESS')
-                    mail to: "tharidhip172002@gmail.com",
-                    subject: "Build Status Email",
-                    body: "Build was successful"
-                    //attachLog: true
+                     emailext (
+                        subject: "Build Status Email",
+                        body: "Test stage was successful",
+                        attachLog: true,
+                        to: "tharidhip172002@gmail.com"
+                    )
                 }
                 failure {
                     // Send email notification on failure
-                    sendEmailNotification('Unit and Integration Tests', 'FAILURE')
+                     emailext (
+                        subject: "Build Status Email",
+                        body: "Test stage was unsuccessful",
+                        attachLog: true,
+                        to: "tharidhip172002@gmail.com"
+                    )
                 }
             }
         }
@@ -52,11 +58,21 @@ pipeline{
              post {
                 success {
                     // Send email notification on success
-                    sendEmailNotification('Security Scan', 'SUCCESS')
+                     emailext (
+                        subject: "Build Status Email",
+                        body: "Security scan stage was successful",
+                        attachLog: true,
+                        to: "tharidhip172002@gmail.com"
+                    )
                 }
                 failure {
                     // Send email notification on failure
-                    sendEmailNotification('Security Scan', 'FAILURE')
+                    emailext (
+                        subject: "Build Status Email",
+                        body: "Security scan was unsuccessful",
+                        attachLog: true,
+                        to: "tharidhip172002@gmail.com"
+                    )
                 }
             }
         }
@@ -80,13 +96,4 @@ pipeline{
         }
         
     }
-}
-
-def sendEmailNotification(stageName, status) {
-    emailext (
-        subject: "${stageName} ${status}",
-        body: "The ${stageName} stage has ${status.toLowerCase()}.",
-        attachLog: true,
-        to: "tharidhip172002@gmail.com",
-    )
 }
