@@ -10,16 +10,16 @@ pipeline{
             steps{
                 echo "fetch the source code from the ${env.DIRECTORY_PATH} specified by the environment varaible"
                 echo "compile the code and generate any necessary artifacts"
-                //sh "mvn --version"
+                sh "mvn --version"
             }
         }
         
         stage('Test'){
             steps{
                 echo "unit tests"
-                //sh "junit --version"
+                sh "junit --version"
                 echo "integration tests"
-                //sh "jmeter --version"
+                sh "jmeter --version"
             }
             post {
                 success {
@@ -27,7 +27,6 @@ pipeline{
                      emailext (
                         subject: "Build Status Email",
                         body: "Test stage was successful",
-                        attachmentsPattern: '*.log',
                         to: "tharidhip172002@gmail.com"
                     )
                 }
@@ -36,7 +35,6 @@ pipeline{
                      emailext (
                         subject: "Build Status Email",
                         body: "Test stage was unsuccessful",
-                        attachmentsPattern: '*.log',
                         to: "tharidhip172002@gmail.com"
                     )
                 }
@@ -61,7 +59,6 @@ pipeline{
                      emailext (
                         subject: "Build Status Email",
                         body: "Security scan stage was successful",
-                        attachmentsPattern: '*.log',
                         to: "tharidhip172002@gmail.com"
                     )
                 }
@@ -70,7 +67,6 @@ pipeline{
                     emailext (
                         subject: "Build Status Email",
                         body: "Security scan was unsuccessful",
-                        attachmentsPattern: '*.log',
                         to: "tharidhip172002@gmail.com"
                     )
                 }
