@@ -28,7 +28,7 @@ pipeline{
                     mail to: "tharidhip172002@gmail.com",
                     subject: "Build Status Email",
                     body: "Build was successful",
-                    attachLog: true
+                    //attachLog: true
                 }
                 failure {
                     // Send email notification on failure
