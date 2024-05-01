@@ -35,8 +35,7 @@ pipeline{
                     // Send email notification on success
                         mail to: "tharidhip172002@gmail.com",
                         subject: "Build Status Email",
-                        body: "Test stage was successful",
-                        attachmentsPattern: 'consoleText'
+                        body: "Test stage was successful"
                 }
                 failure {
                     // Send email notification on failure
