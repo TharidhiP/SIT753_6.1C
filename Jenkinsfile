@@ -24,7 +24,11 @@ pipeline{
             post {
                 success {
                     // Send email notification on success
-                    sendEmailNotification('Unit and Integration Tests', 'SUCCESS')
+                    //sendEmailNotification('Unit and Integration Tests', 'SUCCESS')
+                    mail to: "tharidhip172002@gmail.com",
+                    subject: "Build Status Email",
+                    body: "Build was successful",
+                    attachLog: true
                 }
                 failure {
                     // Send email notification on failure
