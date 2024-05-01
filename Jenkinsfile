@@ -33,23 +33,17 @@ pipeline{
             post {
                 success {
                     // Send email notification on success
-                    script {
-                     emailext (
                         subject: "Build Status Email",
                         body: "Test stage was successful",
-                        to: "tharidhip172002@gmail.com"
-                    )
-                }
+                        mail to: "tharidhip172002@gmail.com"
+                 
                 }
                 failure {
                     // Send email notification on failure
-                    script{
-                     emailext (
                         subject: "Build Status Email",
                         body: "Test stage was unsuccessful",
-                        to: "tharidhip172002@gmail.com"
-                    )
-                }
+                        mail to: "tharidhip172002@gmail.com"
+
                 }
             }
         }
@@ -75,20 +69,16 @@ pipeline{
              post {
                 success {
                     // Send email notification on success
-                     emailext (
                         subject: "Build Status Email",
                         body: "Security scan stage was successful",
-                        to: "tharidhip172002@gmail.com"
-                    )
-                }
+                        mail to: "tharidhip172002@gmail.com"
+        
                 failure {
                     // Send email notification on failure
-                    emailext (
                         subject: "Build Status Email",
                         body: "Security scan was unsuccessful",
                         to: "tharidhip172002@gmail.com"
-                    )
-                }
+                
             }
         }
         
