@@ -26,8 +26,8 @@ pipeline{
                 }
                 echo "integration tests"
                  script {
-                    def jmeterVersion = bat(script: 'jmeter --version', returnStdout: true).trim()
-                    echo "JMeter Version: ${jmeterVersion}"
+                    def junitVersion = bat(script: 'java -cp junit-platform-console-standalone.jar --version', returnStdout: true).trim()
+                    echo "JUnit Version: ${junitVersion}"
                 }
             }
             post {
@@ -91,8 +91,8 @@ pipeline{
             steps{
                 echo "integration tests"
                script {
-                    def jmeterVersion = bat(script: 'jmeter --version', returnStdout: true).trim()
-                    echo "JMeter Version: ${jmeterVersion}"
+                    def junitVersion = bat(script: 'java -cp junit-platform-console-standalone.jar --version', returnStdout: true).trim()
+                    echo "JUnit Version: ${junitVersion}"
                 }
             }
         }
