@@ -10,7 +10,8 @@ pipeline{
             steps{
                 echo "fetch the source code from the ${env.DIRECTORY_PATH} specified by the environment varaible"
                 echo "compile the code and generate any necessary artifacts"
-                sh "mvn --version"
+                def mavenVersion = bat(script: 'mvn --version', returnStdout: true).trim()
+                echo "Maven Version: ${mavenVersion}"
             }
         }
         
