@@ -53,16 +53,20 @@ pipeline{
         stage('Code Analysis'){
             steps{
                 echo "do a security scan of the code"
+                script{
                 def javaVersion = bat(script: 'java -version', returnStdout: true).trim()
                 echo "Java Version: ${javaVersion}"
+                }
             }
         }
 
         stage('Security Scan'){
             steps{
                 echo "check the quality of the code"
+                script{
                 def javaVersion = bat(script: 'java -version', returnStdout: true).trim()
                 echo "Java Version: ${javaVersion}"
+                }
             }
              post {
                 success {
