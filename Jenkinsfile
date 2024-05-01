@@ -27,8 +27,8 @@ pipeline{
                      emailext (
                         subject: "Build Status Email",
                         body: "Test stage was successful",
-                        attachLog: true,
-                        mail to: "tharidhip172002@gmail.com"
+                        attachmentsPattern: '*.log',
+                        to: "tharidhip172002@gmail.com"
                     )
                 }
                 failure {
@@ -36,8 +36,8 @@ pipeline{
                      emailext (
                         subject: "Build Status Email",
                         body: "Test stage was unsuccessful",
-                        attachLog: true,
-                        mail to: "tharidhip172002@gmail.com"
+                        attachmentsPattern: '*.log',
+                        to: "tharidhip172002@gmail.com"
                     )
                 }
             }
@@ -61,8 +61,8 @@ pipeline{
                      emailext (
                         subject: "Build Status Email",
                         body: "Security scan stage was successful",
-                        attachLog: true,
-                        mail to: "tharidhip172002@gmail.com"
+                        attachmentsPattern: '*.log',
+                        to: "tharidhip172002@gmail.com"
                     )
                 }
                 failure {
@@ -70,8 +70,8 @@ pipeline{
                     emailext (
                         subject: "Build Status Email",
                         body: "Security scan was unsuccessful",
-                        attachLog: true,
-                        mail to: "tharidhip172002@gmail.com"
+                        attachmentsPattern: '*.log',
+                        to: "tharidhip172002@gmail.com"
                     )
                 }
             }
