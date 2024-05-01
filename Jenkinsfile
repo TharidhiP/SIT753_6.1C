@@ -31,19 +31,36 @@ pipeline{
                 }
             }
             post {
-                success {
+                always {
+            script {
+                // Define the recipient's email address
+                def recipient = "tharidhip172002@gmail.com"
+                
+                // Define the subject and body of the email
+                def subject = "Build Status Email"
+                def body = "Test stage was successful, click the following link to view the console output of the build: ${env.BUILD_URL}/console"
+                
+                // Send the email with the link to the build log
+                mail (
+                    to: recipient,
+                    subject: subject,
+                    body: body
+                )
+            }
+        }
+                //success {
                     // Send email notification on success
-                        mail to: "tharidhip172002@gmail.com",
-                        subject: "Build Status Email",
-                        body: "Test stage was successful"
-                }
-                failure {
+                 //       mail to: "tharidhip172002@gmail.com",
+                 //       subject: "Build Status Email",
+                 //       body: "Test stage was successful"
+               // }
+               // failure {
                     // Send email notification on failure
-                        mail to: "tharidhip172002@gmail.com",
-                        subject: "Build Status Email",
-                        body: "Test stage was unsuccessful"
+               //         mail to: "tharidhip172002@gmail.com",
+               //         subject: "Build Status Email",
+               //         body: "Test stage was unsuccessful"
     
-                }
+               // }
             }
         }
         
