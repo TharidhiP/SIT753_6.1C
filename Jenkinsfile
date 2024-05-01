@@ -79,6 +79,7 @@ pipeline{
                         body: "Security scan was unsuccessful"              
             }
         }
+        }
         
         stage('Deploy to Staging Environment'){
             steps{
