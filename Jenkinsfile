@@ -32,12 +32,13 @@ pipeline{
             }
             post {
                 always {
+                    success{
             script {
                 // Define the recipient's email address
                 def recipient = "tharidhip172002@gmail.com"
-                
+            
                 // Define the subject and body of the email
-                def subject = "Build Status Email"
+                def subject = "Build Status Email-SUCCESSFUL"
                 def body = "Test stage was successful, click the following link to view the console output of the build: ${env.BUILD_URL}/console"
                 
                 // Send the email with the link to the build log
@@ -47,20 +48,25 @@ pipeline{
                     body: body
                 )
             }
+                }
+                   failure{
+            script {
+                // Define the recipient's email address
+                def recipient = "tharidhip172002@gmail.com"
+            
+                // Define the subject and body of the email
+                def subject = "Build Status Email-FAILURE"
+                def body = "Test stage was unsuccessful, click the following link to view the console output of the build: ${env.BUILD_URL}/console"
+                
+                // Send the email with the link to the build log
+                mail (
+                    to: recipient,
+                    subject: subject,
+                    body: body
+                )
+            }
+                }
         }
-                //success {
-                    // Send email notification on success
-                 //       mail to: "tharidhip172002@gmail.com",
-                 //       subject: "Build Status Email",
-                 //       body: "Test stage was successful"
-               // }
-               // failure {
-                    // Send email notification on failure
-               //         mail to: "tharidhip172002@gmail.com",
-               //         subject: "Build Status Email",
-               //         body: "Test stage was unsuccessful"
-    
-               // }
             }
         }
         
@@ -83,18 +89,42 @@ pipeline{
                 }
             }
              post {
-                success {
-                    // Send email notification on success
-                        mail to: "tharidhip172002@gmail.com",
-                        subject: "Build Status Email",
-                        body: "Security scan stage was successful"
-                }
-                failure {
-                    // Send email notification on failure
-                        mail to: "tharidhip172002@gmail.com",
-                        subject: "Build Status Email",
-                        body: "Security scan was unsuccessful"              
+                  always {
+                    success{
+            script {
+                // Define the recipient's email address
+                def recipient = "tharidhip172002@gmail.com"
+            
+                // Define the subject and body of the email
+                def subject = "Build Status Email-SUCCESSFUL"
+                def body = "Security scan stage was successful, click the following link to view the console output of the build: ${env.BUILD_URL}/console"
+                
+                // Send the email with the link to the build log
+                mail (
+                    to: recipient,
+                    subject: subject,
+                    body: body
+                )
             }
+        }
+         failure{
+            script {
+                // Define the recipient's email address
+                def recipient = "tharidhip172002@gmail.com"
+            
+                // Define the subject and body of the email
+                def subject = "Build Status Email-FAILURE"
+                def body = "Security scan stage was unsuccessful, click the following link to view the console output of the build: ${env.BUILD_URL}/console"
+                
+                // Send the email with the link to the build log
+                mail (
+                    to: recipient,
+                    subject: subject,
+                    body: body
+                )
+            }
+        }
+                  }
         }
         }
         
@@ -121,3 +151,5 @@ pipeline{
         
     }
 }
+
+
