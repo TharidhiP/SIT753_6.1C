@@ -20,9 +20,15 @@ pipeline{
         stage('Test'){
             steps{
                 echo "unit tests"
-                sh "junit --version"
+                 script {                
+                    def junitVersion = bat(script: 'java -cp junit-platform-console-standalone.jar --version', returnStdout: true).trim()
+                    echo "JUnit Version: ${junitVersion}"
+                }
                 echo "integration tests"
-                sh "jmeter --version"
+                 script {
+                    def jmeterVersion = bat(script: 'jmeter --version', returnStdout: true).trim()
+                    echo "JMeter Version: ${jmeterVersion}"
+                }
             }
             post {
                 success {
@@ -84,7 +90,10 @@ pipeline{
          stage('Test in Staging Environment'){
             steps{
                 echo "integration tests"
-                //sh "jmeter --version"
+               script {
+                    def jmeterVersion = bat(script: 'jmeter --version', returnStdout: true).trim()
+                    echo "JMeter Version: ${jmeterVersion}"
+                }
             }
         }
          stage('Deploy to Production'){
